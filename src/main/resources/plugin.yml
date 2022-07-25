@@ -1,0 +1,4 @@
+name: LovciVarianta
+version: '${project.version}'
+main: lovcivarianta.MainLovci
+api-version: 1.18
