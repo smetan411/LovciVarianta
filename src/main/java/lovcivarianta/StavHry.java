@@ -7,13 +7,12 @@ import java.util.List;
 public class StavHry {
     private Player bezec;
     private List<Player> lovci;
-    private boolean hraJede = false;
 
     public enum Stav {
-        PROSEL_PORTALEM, ZACATEK_HRY
+        ZACATEK_HRY, PROSEL_PORTALEM, KONEC_HRY
     }
 
-    private Stav stav = Stav.ZACATEK_HRY;
+    private Stav stav = Stav.KONEC_HRY;
 
     public Stav getStav() {
         return stav;
@@ -24,15 +23,15 @@ public class StavHry {
     }
 
     public void start() {
-        hraJede = true;
+        stav = Stav.ZACATEK_HRY;
     }
 
     public void stop() {
-        hraJede = false;
+        stav = Stav.KONEC_HRY;
     }
 
     public boolean jedeHra() {
-        return hraJede;
+        return stav != Stav.KONEC_HRY;
     }
 
     public void setBezec(Player bezec, List<Player> lovci) {

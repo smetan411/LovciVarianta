@@ -17,28 +17,27 @@ public final class MainLovci extends JavaPlugin implements Listener {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new SmrtBezce(stavHry), this);
         getServer().getPluginManager().registerEvents(new PruchodPortalem(stavHry), this);
-        getServer().getPluginManager().registerEvents(new ZabitiEndermana(stavHry), this);
-
+        getServer().getPluginManager().registerEvents(new ZabitiDraka(stavHry), this);
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         switch (command.getName()) {
-            case "stop":
+            case "stop" -> {
                 stavHry.stop();
                 stavHry.zpravaBezci("Hra byla ukoncena.");
                 stavHry.zpravaLovcum("Hra byla ukoncena.");
                 stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
-                break;
-
-            case "start":
+            }
+            case "start" -> {
                 if (stavHry.jedeHra()) {
                     sender.sendMessage("Hra jede, nemuzes nastartovat novou, dokud hra neskonci.");
                     return true;
                 }
                 if (args.length != 1) {
                     sender.sendMessage("Spatne, musis zadat: start jmenoBezce.");
+                    return false;
                 }
                 String jmenoBezce = args[0];
                 Player bezec = sender.getServer().getPlayer(jmenoBezce);
@@ -49,12 +48,11 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 List<Player> lovci = new ArrayList<>(sender.getServer().getOnlinePlayers());
                 lovci.remove(bezec);
                 stavHry.setBezec(bezec, lovci);
-
                 stavHry.zpravaBezci("Jsi Bezec, tak prchej!");
                 stavHry.zpravaLovcum("Jsi lovec, tak chyt bezce!");
                 new Kompas(stavHry).dejLovcumKompas();
                 stavHry.start();
-                break;
+            }
         }
         return true;
     }
