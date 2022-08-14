@@ -17,7 +17,6 @@ public class PruchodPortalem implements Listener {
     public void projdiPortalem(PlayerTeleportEvent event) {
         if (!stavHry.jedeHra()) return;
         if (event.getCause() != PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) return;
-        event.setCancelled(true);
 
         if ( event.getPlayer().equals(stavHry.getBezec()) && stavHry.getStav() == StavHry.Stav.ZACATEK_HRY){
             stavHry.zmenStav(StavHry.Stav.PROSEL_PORTALEM);
@@ -25,6 +24,7 @@ public class PruchodPortalem implements Listener {
             stavHry.zpravaLovcum("Bezec zdrhl do Endu.", false);
         }
         if (stavHry.getStav() == StavHry.Stav.PROSEL_PORTALEM) {
+            event.setCancelled(true);
             event.getPlayer().teleport(Bukkit.getWorld("world_the_end").getSpawnLocation());
         }
     }
