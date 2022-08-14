@@ -22,8 +22,8 @@ public class ZabitiDraka implements Listener {
                 stavHry.getBezec().equals(utocnik) &&
                 stavHry.getStav() == StavHry.Stav.PROSEL_PORTALEM) {
             stavHry.stop();
-            stavHry.zpravaBezci("Zabil jsi Draka, vyhrals. Konec hry.");
-            stavHry.zpravaLovcum("Hrac zabil Draka, prohrali jste. Konec hry.");
+            stavHry.zpravaBezci("Zabil jsi Draka, vyhrals. Konec hry.", true);
+            stavHry.zpravaLovcum("Hrac zabil Draka, prohrali jste. Konec hry.", true);
         }
     }
 }
