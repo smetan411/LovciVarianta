@@ -1,6 +1,6 @@
-name: LovciVarianta
+name: LovciTeleportEnd
 version: '${project.version}'
-main: lovcivarianta.MainLovci
+main: lovci_teleport_end.MainLovci
 api-version: 1.18
 
 commands:

@@ -1,4 +1,4 @@
-package lovcivarianta;
+package lovci_teleport_end;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -20,8 +20,8 @@ public class PruchodPortalem implements Listener {
 
         if ( event.getPlayer().equals(stavHry.getBezec()) && stavHry.getStav() == StavHry.Stav.ZACATEK_HRY){
             stavHry.zmenStav(StavHry.Stav.PROSEL_PORTALEM);
-            stavHry.zpravaBezci("Utekls do Netheru.", false);
-            stavHry.zpravaLovcum("Bezec zdrhl do Netheru.", false);
+            stavHry.zpravaBezci("Utekls do Endu.", false);
+            stavHry.zpravaLovcum("Bezec zdrhl do Endu.", false);
         }
         if (stavHry.getStav() == StavHry.Stav.PROSEL_PORTALEM) {
             event.setCancelled(true);

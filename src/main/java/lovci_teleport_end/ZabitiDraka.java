@@ -1,4 +1,4 @@
-package lovcivarianta;
+package lovci_teleport_end;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;

@@ -1,10 +1,14 @@
-package lovcivarianta;
+package lovci_teleport_end;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +54,19 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 stavHry.setBezec(bezec, lovci);
                 stavHry.zpravaBezci("Jsi bezec, prchej!", true);
                 stavHry.zpravaLovcum("Jsi lovec, chyt bezce!", true);
+
+                if (sender instanceof Player) {
+                    Player player = (Player) sender;
+                    getServer().getOnlinePlayers().forEach(player2 -> {
+                        player2.teleport(player.getLocation());
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 720, 255, true, false, false)));
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 720, 255, true, false, false)));
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 720, 155, true, false, false)));
+                        stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 720, 155, true, false, false)));
+                        player2.getInventory().clear();
+                        player2.getInventory().addItem(new ItemStack(Material.BREAD, 16));
+                    });
+                }
                 new Kompas(stavHry).dejLovcumKompas();
                 stavHry.start();
             }
