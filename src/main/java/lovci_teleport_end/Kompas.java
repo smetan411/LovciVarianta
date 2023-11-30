@@ -16,7 +16,7 @@ public class Kompas {
         this.stavHry = stavHry;
     }
 
-    private ItemStack vyrobKompas(){
+    public ItemStack vyrobKompas(){
         ItemStack kompas = new ItemStack(Material.COMPASS);
         ItemMeta vlastnosti = kompas.getItemMeta();
         vlastnosti.setDisplayName(ChatColor.GREEN + "kompasLovce");

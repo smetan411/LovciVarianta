@@ -22,6 +22,8 @@ public final class MainLovci extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new SmrtBezce(stavHry), this);
         getServer().getPluginManager().registerEvents(new PruchodPortalem(stavHry), this);
         getServer().getPluginManager().registerEvents(new ZabitiDraka(stavHry), this);
+        getServer().getPluginManager().registerEvents(new OziveniLovce(stavHry), this);
+        getServer().getPluginManager().registerEvents(new VyhozeniKompasu(stavHry), this);
     }
 
     @Override
@@ -33,6 +35,7 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 stavHry.zpravaBezci("Hra byla ukoncena.", true);
                 stavHry.zpravaLovcum("Hra byla ukoncena.", true);
                 stavHry.getLovci().forEach(lovec -> lovec.getInventory().clear());
+                stavHry.getBezec().getInventory().clear();
             }
             case "start" -> {
                 if (stavHry.jedeHra()) {
