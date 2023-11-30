@@ -20,7 +20,7 @@ public class VyhozeniKompasu implements Listener {
         Player player = event.getPlayer();
 
         if ((!player.equals(stavHry.getBezec()))) {
-            if(event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals(ChatColor.BLUE + "kompasLovce")){
+            if(event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals(ChatColor.GREEN + "kompasLovce")){
                 event.setCancelled(true);
             }
         }
