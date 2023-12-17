@@ -55,22 +55,26 @@ public final class MainLovci extends JavaPlugin implements Listener {
                 List<Player> lovci = new ArrayList<>(sender.getServer().getOnlinePlayers());
                 lovci.remove(bezec);
                 stavHry.setBezec(bezec, lovci);
+
+
                 stavHry.zpravaBezci("Jsi bezec, prchej!", true);
                 stavHry.zpravaLovcum("Jsi lovec, chyt bezce!", true);
 
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
-                    getServer().getOnlinePlayers().forEach(player2 -> {
-                        player2.teleport(player.getLocation());
+                    getServer().getOnlinePlayers().forEach(allPlayers -> {
+                        allPlayers.teleport(player.getLocation());
                         stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 720, 255, true, false, false)));
                         stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 720, 255, true, false, false)));
                         stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 720, 155, true, false, false)));
                         stavHry.getLovci().forEach(lovec -> lovec.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 720, 155, true, false, false)));
-                        player2.getInventory().clear();
-                        player2.getInventory().addItem(new ItemStack(Material.BREAD, 16));
+                        allPlayers.getInventory().clear();
                     });
                 }
+
                 new Kompas(stavHry).dejLovcumKompas();
+                stavHry.getLovci().forEach(lovec -> lovec.getInventory().addItem(new ItemStack(Material.BREAD, 16)));
+                stavHry.getBezec().getInventory().addItem(new ItemStack(Material.BREAD, 16));
                 stavHry.start();
             }
         }
